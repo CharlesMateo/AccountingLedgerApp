@@ -2,7 +2,9 @@ package com.pluralsight;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,24 +14,50 @@ public class TransactionManager {
     // This method reads all transactions from the file
     public List<Transaction> loadTransactions() {
         List<Transaction> transactions = new ArrayList<>();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("\\|");
-                LocalDate date = LocalDate.parse(parts[0].trim());
-                LocalTime time = LocalTime.parse(parts[1].trim());
-                String description = parts[2].trim();
-                String vendor = parts[3].trim();
-                double amount = Double.parseDouble(parts[4].trim());
 
-                transactions.add(new Transaction(date, time, description, vendor, amount));
+                // Check if the first part contains both date and time
+                if (parts.length != 4) {
+                    System.out.println("Invalid line format: " + line);
+                    continue; // Skip invalid lines
+                }
+
+                // Combine and trim the date-time part
+                String dateTimePart = parts[0].trim();
+
+                // Parse the date and time
+                try {
+                    LocalDateTime dateTime = LocalDateTime.parse(dateTimePart, dateTimeFormatter);
+                    LocalDate date = dateTime.toLocalDate();
+                    LocalTime time = dateTime.toLocalTime();
+
+                    // Get description, vendor, and amount
+                    String description = parts[1].trim();
+                    String vendor = parts[2].trim();
+                    double amount = Double.parseDouble(parts[3].trim());
+
+                    // Add the transaction to the list
+                    transactions.add(new Transaction(date, time, description, vendor, amount));
+                } catch (Exception e) {
+                    System.out.println("Error parsing date or time in line: " + line);
+                }
             }
         } catch (IOException e) {
             System.out.println("Could not read the file: " + e.getMessage());
         }
+
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions found.");
+        }
+
         return transactions;
     }
+
 
     // This method adds a new transaction to the file
     public void addTransaction(Transaction transaction) {
@@ -68,6 +96,5 @@ public class TransactionManager {
         return payments;
     }
 }
-
 
 

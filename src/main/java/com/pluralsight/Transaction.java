@@ -20,11 +20,6 @@ public class Transaction {
     }
     // Empty constructor
     public Transaction() {
-        this.date = null; // Need help with what to put here
-        this.time = null; //
-        this.description = "";
-        this.vendor = "";
-        this.amount = 0;
     }
 
     public LocalDate getDate() {

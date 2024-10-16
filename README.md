@@ -17,3 +17,7 @@ This is a simple Java-based Accounting Ledger application that allows users to m
 - A terminal or IDE to run the Java application
 - Ensure a `transactions.csv` file exists in the application directory. The file will be automatically created if it doesn't exist.
 
+
+## Screenshots
+
+![App Screenshot](https://yearuptemp-my.sharepoint.com/personal/cmateo_appdev_yearup_org/Documents/Screenshot%202024-10-16%20130742.png?Web=1)

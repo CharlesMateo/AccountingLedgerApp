@@ -25,8 +25,8 @@ public class TransactionManager {
                 if (parts.length != 4) {
                     System.out.println("Invalid line format: " + line);
                     continue; // Skip invalid lines
+                    // Thank you Osmig
                 }
-
                 // Combine and trim the date-time part
                 String dateTimePart = parts[0].trim();
 

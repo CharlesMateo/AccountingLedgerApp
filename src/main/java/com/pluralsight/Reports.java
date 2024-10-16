@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ReportManager {
+public class Reports {
     private final TransactionManager transactionManager;
 
-    public ReportManager(TransactionManager transactionManager) {
+    public Reports(TransactionManager transactionManager) {
         this.transactionManager = transactionManager;
     }
 
@@ -37,7 +37,6 @@ public class ReportManager {
                 previousMonth.add(t);
             }
         }
-
         return previousMonth;
     }
 
@@ -51,7 +50,6 @@ public class ReportManager {
                 result.add(t);
             }
         }
-
         return result;
     }
 }

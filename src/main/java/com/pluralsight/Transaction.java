@@ -21,7 +21,7 @@ public class Transaction {
     // Empty constructor
     public Transaction() {
     }
-
+    // Getters
     public LocalDate getDate() {
         return date;
     }
@@ -37,7 +37,7 @@ public class Transaction {
     public double getAmount() {
         return amount;
     }
-
+    // I still don't get Override
     @Override
     public String toString() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -11,7 +11,7 @@ import java.util.List;
 public class TransactionManager {
     private final String csvFile = "transactions.csv"; // File where we store the transactions
 
-    // This method reads all transactions from the file
+    // Reads all transactions from the file
     public List<Transaction> loadTransactions() {
         List<Transaction> transactions = new ArrayList<>();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -59,7 +59,7 @@ public class TransactionManager {
     }
 
 
-    // This method adds a new transaction to the file
+    // Adds a new transaction to the file
     public void addTransaction(Transaction transaction) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile, true))) {
             writer.write(transaction.toString());

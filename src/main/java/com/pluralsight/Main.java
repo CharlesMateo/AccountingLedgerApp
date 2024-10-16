@@ -12,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         while (true) {
+            // Display menu
             System.out.println("Welcome to the Account Ledger App!");
             System.out.println("---------------------------");
             System.out.println("Home Screen:");
@@ -46,7 +47,7 @@ public class Main {
         }
     }
 
-    // Method to add a transaction (deposit or payment)
+    // Adding a transaction (deposit or payment)
     private static void addTransaction(boolean isDeposit) {
         System.out.print("Enter description: ");
         String description = scan.nextLine();
@@ -59,14 +60,14 @@ public class Main {
             amount = -Math.abs(amount); // Make sure it's a negative number for payments
         }
 
-        // Create a new transaction with the current date and time
+        // Transaction with the current date and time
         Transaction transaction = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
         transactionManager.addTransaction(transaction);
 
         System.out.println("Transaction added.");
     }
 
-    // Method to show the ledger
+    // Showing Ledger
     private static void showLedger() {
         System.out.println("Ledger:");
         System.out.println("A) Show All");
@@ -99,7 +100,7 @@ public class Main {
         }
     }
 
-    // Method to show the reports menu
+    // Reports menu
     private static void showReports() {
         System.out.println("Reports:");
         System.out.println("1) Month to Date");
@@ -127,7 +128,7 @@ public class Main {
         }
     }
 
-    // Method to display transactions
+    // Display transactions
     private static void showTransactions(List<Transaction> transactions) {
         if (transactions.isEmpty()) {
             System.out.println("No transactions found.");
